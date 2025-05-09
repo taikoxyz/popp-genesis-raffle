@@ -14,10 +14,7 @@ async function fetchUniqueRandomIndices(count, min, max) {
     const url = `https://www.random.org/integers/?num=${needed}&min=${min}&max=${max}&col=1&base=10&format=plain&rnd=new`;
 
     const response = await axios.get(url);
-    const numbers = response.data
-      .trim()
-      .split('\n')
-      .map(n => parseInt(n, 10));
+    const numbers = response.data.split('\n')
 
     numbers.forEach(n => indices.add(n));
   }
