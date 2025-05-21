@@ -24,6 +24,7 @@ async function fetchUniqueRandomIndices(count, min, max) {
 
 async function getRandomWinnersFrom(filePath, numWinners){
   try {
+    console.log(`📜 Randomly selecting ${numWinners} from ${filePath}`);
     const lines = fs.readFileSync(filePath, 'utf8').split('\n').filter(Boolean);
     const addresses = lines.map(line => line.split(',')[0].trim());
 
@@ -32,13 +33,13 @@ async function getRandomWinnersFrom(filePath, numWinners){
     }
 
     const winnerIndices = await fetchUniqueRandomIndices(numWinners, 0, addresses.length - 1);
-    console.log({winnerIndices})
+    
     const winners = winnerIndices.map(index => addresses[index]);
 
     const outputFile = filePath.replace('.csv', '_winners.json');
 
     fs.writeFileSync(outputFile, JSON.stringify(winners, null, 2));
-    console.log(`🎉 Winners saved to ${outputFile}`);
+    console.log(`🎉 Winners ${winners.join(', ')} saved to ${outputFile}`);
 
   } catch (err) {
     console.error('Error:', err);
