@@ -7,8 +7,8 @@
   "type": "commonjs",
   "main": "index.js",
   "scripts": {
-	"clean": "rm winners.json major_winner.json",
-	"start": "node index.js"
+	  "clean": "rm *_winners.json",
+	  "start": "node index.js"
   },
   "dependencies": {
     "axios": "^1.9.0"
